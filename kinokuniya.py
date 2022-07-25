@@ -5,17 +5,6 @@ import requests
 import os
 
 def find_a_book(ISBN_of_a_book) :
-    URL = os.getenv("URL") + ISBN_of_a_book
-    headers = {
-        'User-Agent': os.getenv("USER_AGENT")
-    }
-    req = requests.get(URL ,headers=headers)
-    
-    if req.status_code >= 400 :
-        print("Oh! your book with ISBN:",ISBN_of_a_book,"is invalid")
-        return
-    
-    soup = BeautifulSoup(req.content ,features="html.parser")
     #find title name of the book
     print(soup.find("h1").string)
     

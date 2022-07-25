@@ -15,11 +15,14 @@ def find_a_book(ISBN_of_a_book) :
         'User-Agent': os.getenv("USER_AGENT")
     }
     req = requests.get(URL ,headers=headers)
+    
+    if req.status_code >= 400 :
+        print("Oh! your book with ISBN:",ISBN_of_a_book,"is invalid")
+        return
+    
     soup = BeautifulSoup(req.content ,features="html.parser")
-
     #find title name of the book
     print(soup.find("h1").string)
-
     #find stock status
     stock_status = str(soup.find("div", class_="stock").h2.span.string)
     print(stock_status.strip())

@@ -2,12 +2,7 @@
 
 from bs4 import BeautifulSoup
 import requests
-from dotenv import load_dotenv
 import os
-
-load_dotenv()
-
-BOOK_ISBN_LIST = os.getenv("BOOK_ISBN").split(",")
 
 def find_a_book(ISBN_of_a_book) :
     URL = os.getenv("URL") + ISBN_of_a_book
@@ -31,5 +26,5 @@ def find_a_book(ISBN_of_a_book) :
     print(price)
     print('--------------------')
 
-for isbn in BOOK_ISBN_LIST:
-    find_a_book(isbn)
+if __name__ == "__main__" :
+    print("Welcome to Kinokuniya Module!")
